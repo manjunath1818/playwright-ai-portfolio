@@ -70,6 +70,17 @@ This plan covers the SauceDemo login page and validates successful login and com
   - Error message contains `Username and password do not match any user in this service`
 - **Edge cases considered:** Same error is shown for incorrect username or incorrect password, no partial success occurs
 
+### Scenario 1.6 — Login form supports keyboard navigation
+- **Priority:** P1
+- **Tags:** @regression
+- **Preconditions:** Login page is visible
+- **Steps:**
+  1. Focus the username field
+  2. Press Tab twice — expected: focus moves to password and then Login
+- **Assertions:**
+  - Username, password, and Login controls receive keyboard focus in order
+- **Edge cases considered:** Keyboard users must not need a mouse to reach the login controls.
+
 ## Not covered (and why)
 - Password reset flow — not available on the public SauceDemo login page
 - Remember-me or alternative authentication options — not present in the target UI

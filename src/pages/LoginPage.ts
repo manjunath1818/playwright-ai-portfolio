@@ -40,4 +40,16 @@ export class LoginPage extends BasePage {
   async submitEmptyCredentials(): Promise<void> {
     await this.loginButton.click();
   }
+
+  async focusUsername(): Promise<void> {
+    await this.usernameField.focus();
+  }
+
+  async moveFocusToPassword(): Promise<void> {
+    await this.page.keyboard.press('Tab');
+  }
+
+  async moveFocusToLoginButton(): Promise<void> {
+    await this.page.keyboard.press('Tab');
+  }
 }

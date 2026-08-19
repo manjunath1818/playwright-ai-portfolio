@@ -7,11 +7,12 @@
     "test": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
     "test:chromium": "playwright test --project=chromium",
+    "test:api": "playwright test --project=api",
+    "test:a11y": "playwright test --grep @a11y",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
     "test:allure": "playwright test --reporter=line,allure-playwright",
-    "install-browsers": "playwright install --with-deps",
-    "postinstall": "playwright install --with-deps"
+    "install-browsers": "playwright install"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,5 @@
+{
+  "knownPost": { "id": 1, "userId": 1, "requiredKeys": ["userId", "id", "title", "body"] },
+  "missingPost": { "id": 999999 },
+  "minimumUserCount": 1
+}

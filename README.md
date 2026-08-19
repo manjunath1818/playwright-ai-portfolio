@@ -7,7 +7,8 @@ A production-style Playwright TypeScript framework that tests the SauceDemo stor
 ## What this project demonstrates
 
 - Page Object Model with typed, reusable page classes
-- Data-driven login and checkout tests
+- Data-driven UI and API tests
+- Keyboard accessibility coverage for the login flow
 - Stable locator strategy: accessible roles first, then application test IDs
 - Smoke, critical, and regression test tags
 - Cross-browser execution, traces, screenshots, videos, HTML reports, and Allure results
@@ -40,6 +41,7 @@ npm run test:report
 tests/                 Test scenarios organized by user flow
 tests/data/            JSON test data
 src/pages/             Page Objects: locators and user actions
+src/api/               Typed API clients and reusable request behavior
 src/fixtures/base.ts   Shared authenticated-page fixture
 specs/                 Human-readable test plans
 .github/agents/        AI agent instructions
@@ -47,6 +49,18 @@ specs/                 Human-readable test plans
 ```
 
 Tests contain assertions. Page Objects contain locators and actions. This separation makes UI changes cheaper to maintain.
+
+## Architecture at a glance
+
+```mermaid
+flowchart LR
+  Plans["Test plans\nspecs/"] --> Agents["AI agents\nplan • generate • heal • analyze"]
+  Agents --> Tests["Playwright tests\nUI • API • accessibility"]
+  Data["JSON test data"] --> Tests
+  Pages["Page Objects\nand API clients"] --> Tests
+  Tests --> CI["GitHub Actions\nChromium • Firefox • WebKit • API"]
+  CI --> Evidence["HTML report • Allure results\ntraces • screenshots • videos"]
+```
 
 ## Architecture decisions
 
@@ -65,16 +79,20 @@ Tests contain assertions. Page Objects contain locators and actions. This separa
 2. The **Generator** implements a selected scenario using existing Page Objects and test data.
 3. CI runs the chosen browser shard and saves HTML, Allure, trace, screenshot, and video evidence.
 4. The **Healer** diagnoses failures without hiding regressions, weakening assertions, or skipping tests.
+5. The **Coverage Analyst** maps planned scenarios to tests and exposes gaps.
+6. The **API Test Generator** creates safe, typed API coverage from an approved plan.
 
 ## CI evidence
 
-The GitHub Actions workflow runs one job per browser and uploads these artifacts for each job:
+The GitHub Actions workflow runs UI tests per browser and API tests once, then uploads these artifacts for each job:
 
 - `playwright-report-<browser>`: interactive HTML results
 - `test-results-<browser>`: trace, screenshot, video, and failure context
 - `allure-results-<browser>`: raw Allure result files
 
 This makes a test result reviewable after the run—not merely a green or red badge.
+
+The browser cache and per-project installation keep later CI runs faster while preserving isolated browser evidence.
 
 ## Quality gates
 
