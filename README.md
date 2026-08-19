@@ -119,3 +119,9 @@ SauceDemo exposes `data-test` attributes rather than this repository’s preferr
 ## Portfolio walkthrough
 
 For a five-minute demo, run `npm run test:smoke`, open the HTML report, then explain one flow: login → inventory → cart → checkout confirmation. Follow it by showing the corresponding Page Objects and the browser-matrix workflow. This demonstrates both coding ability and the judgment behind the framework.
+
+## Copyright and commercial use
+
+Copyright © 2026 Manjunath K. All rights reserved.
+
+This repository is shared as a portfolio for review and evaluation. No permission is granted to copy, modify, distribute, sublicense, sell, or otherwise use this project's original source code or documentation for commercial purposes without prior written permission from the copyright holder. See [LICENSE](LICENSE) for details.
