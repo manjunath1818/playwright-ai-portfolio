@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "lastUpdated": null,
+  "agents": [
+    {
+      "id": "planner",
+      "name": "Playwright Test Planner",
+      "definition": ".github/agents/playwright-test-planner.agent.md",
+      "purpose": "Creates a numbered, reviewable test plan.",
+      "maturity": "defined-not-evaluated"
+    },
+    {
+      "id": "generator",
+      "name": "Playwright Test Generator",
+      "definition": ".github/agents/playwright-test-generator.agent.md",
+      "purpose": "Implements an approved test scenario using project conventions.",
+      "maturity": "defined-not-evaluated"
+    },
+    {
+      "id": "healer",
+      "name": "Playwright Test Healer",
+      "definition": ".github/agents/playwright-test-healer.agent.md",
+      "purpose": "Diagnoses a failed test without weakening test intent.",
+      "maturity": "defined-not-evaluated"
+    },
+    {
+      "id": "coverage-analyst",
+      "name": "Playwright Coverage Analyst",
+      "definition": ".github/agents/playwright-coverage-analyst.agent.md",
+      "purpose": "Maps planned scenarios to asserted test coverage.",
+      "maturity": "defined-not-evaluated"
+    },
+    {
+      "id": "api-generator",
+      "name": "Playwright API Test Generator",
+      "definition": ".github/agents/playwright-api-test-generator.agent.md",
+      "purpose": "Creates typed API tests from an approved scenario.",
+      "maturity": "defined-not-evaluated"
+    }
+  ],
+  "evaluations": []
+}

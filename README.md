@@ -94,6 +94,18 @@ This makes a test result reviewable after the run—not merely a green or red ba
 
 The browser cache and per-project installation keep later CI runs faster while preserving isolated browser evidence.
 
+## Agent evaluation scorecard
+
+The repository separates agent **definitions** from agent **evidence**. The Planner, Generator, Healer, Coverage Analyst, and API Test Generator start as `defined-not-evaluated`; they do not earn production, autonomous, cost, or success-rate claims merely by existing.
+
+Record a real run with its input, output, human-review decision, failure category, and evidence reference in [`tests/data/agent-evaluations.json`](tests/data/agent-evaluations.json). Generate the live Markdown scorecard with:
+
+```powershell
+npm run report:agents
+```
+
+See [`specs/agent-evaluation-scorecard.md`](specs/agent-evaluation-scorecard.md) for the required evidence and example entry.
+
 ## Quality gates
 
 Before a change is considered ready, it should:

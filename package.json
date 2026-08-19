@@ -12,11 +12,12 @@
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
     "test:allure": "playwright test --reporter=line,allure-playwright",
-    "install-browsers": "playwright install"
+    "install-browsers": "playwright install",
+    "report:agents": "node src/utils/build-agent-scorecard.mjs"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.62.1",
