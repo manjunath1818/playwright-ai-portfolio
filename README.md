@@ -164,3 +164,4 @@ Copyright © 2026 Manjunath K. All rights reserved.
 
 This repository is shared as a portfolio for review and evaluation. No permission is granted to copy, modify, distribute, sublicense, sell, or otherwise use this project's original source code or documentation for commercial purposes without prior written permission from the copyright holder. See [LICENSE](LICENSE) for details.
 # PR quality governance runs deterministic code review, test-impact analysis, and release-risk analysis before human review.
+PR quality governance runs deterministic code review, test-impact analysis, and release-risk analysis before human review.
