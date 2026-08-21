@@ -1,0 +1,76 @@
+name: QA PR Review Agent
+
+on:
+  pull_request:
+    branches: [main, master]
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    name: Review changed code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run deterministic PR review
+        id: review
+        run: node src/utils/review-pull-request.mjs --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}" --report pr-review.md
+
+      - name: Analyze test impact
+        run: node src/utils/analyze-test-impact.mjs --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}" --report test-impact.md
+
+      - name: Attach impact analysis to the review report
+        run: cat test-impact.md >> pr-review.md
+
+      - name: Analyze initial release risk
+        run: node src/utils/analyze-release-risk.mjs --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}" --impact-report test-impact.md --report release-risk.md
+
+      - name: Attach release risk analysis to the review report
+        run: cat release-risk.md >> pr-review.md
+
+      - name: Add or update PR review comment
+        if: ${{ github.event.pull_request.head.repo.fork == false }}
+        uses: actions/github-script@v7
+        env:
+          REVIEW_REPORT: pr-review.md
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync(process.env.REVIEW_REPORT, 'utf8');
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner, repo, issue_number, per_page: 100,
+            });
+            const prior = comments.find((comment) => comment.user.type === 'Bot' && comment.body.includes('<!-- qa-pr-review-agent -->'));
+            if (prior) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: prior.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+      - name: Publish review report
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-pr-review-report
+          path: |
+            pr-review.md
+            test-impact.md
+            release-risk.md
+          retention-days: 30
+
+      - name: Enforce blocking findings
+        if: ${{ steps.review.outputs.status == 'blocked' }}
+        run: |
+          echo "Blocking repository-rule findings were detected. See the QA PR Review Agent report."
+          exit 1

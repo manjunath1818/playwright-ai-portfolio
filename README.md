@@ -81,6 +81,30 @@ flowchart LR
 4. The **Healer** diagnoses failures without hiding regressions, weakening assertions, or skipping tests.
 5. The **Coverage Analyst** maps planned scenarios to tests and exposes gaps.
 6. The **API Test Generator** creates safe, typed API coverage from an approved plan.
+7. The **PR Review Agent** runs after a pull request is opened or updated. It checks changed code against repository rules, posts one updateable review report, and blocks only explicit rule violations.
+8. The **CI Failure Triage Agent** writes an evidence-based failure classification into the `test-results` artifact when a Playwright CI job fails. It never changes code or claims a root cause without evidence.
+9. The **Test Impact Analyst** maps PR changes to focused tests for quick feedback. It is advisory: the full cross-browser and API CI matrix remains the merge safety net.
+10. The **Release Risk Analyst** summarizes initial change-scope risk, required test evidence, and ownership prompts for QA and release decisions. It never approves a release.
+
+The PR Review Agent is deterministic, not an autonomous approver: it does not edit code, approve pull requests, merge branches, or replace human review.
+
+Run the same static review locally before raising a PR:
+
+```powershell
+npm run review:pr -- --base main
+```
+
+Run a local test-impact analysis with:
+
+```powershell
+npm run impact:tests -- --base main
+```
+
+Run a local initial release-risk analysis with:
+
+```powershell
+npm run risk:release -- --base main
+```
 
 ## CI evidence
 
@@ -115,6 +139,7 @@ Before a change is considered ready, it should:
 3. Retain failure evidence for any failing run
 4. Follow the locator and Page Object conventions in `AGENTS.md`
 5. Keep agent changes reviewable: plans, generated tests, and repairs each have a defined scope
+6. Resolve any blocking PR Review Agent finding before merge
 
 ## Interview talking points
 
@@ -123,6 +148,7 @@ Before a change is considered ready, it should:
 - “The CI matrix isolates browser-specific failures and retains debugging artifacts.”
 - “My AI agents have narrow permissions: planning, generation, and conservative failure diagnosis.”
 - “I preserve test intent: a failing test can reveal a product bug, not necessarily a test bug.”
+- “After a PR is raised, a repository-rule review agent posts a repeatable report and works alongside—not instead of—human review and CI.”
 
 ## Note on SauceDemo locators
 

@@ -36,6 +36,27 @@
       "definition": ".github/agents/playwright-api-test-generator.agent.md",
       "purpose": "Creates typed API tests from an approved scenario.",
       "maturity": "defined-not-evaluated"
+    },
+    {
+      "id": "ci-failure-triage",
+      "name": "Playwright CI Failure Triage Agent",
+      "definition": ".github/agents/playwright-ci-failure-triage.agent.md",
+      "purpose": "Classifies failed CI evidence without changing tests or product code.",
+      "maturity": "defined-not-evaluated"
+    },
+    {
+      "id": "test-impact-analyst",
+      "name": "Playwright Test Impact Analyst",
+      "definition": ".github/agents/playwright-test-impact-analyst.agent.md",
+      "purpose": "Maps changed code to relevant tests while preserving the full CI safety net.",
+      "maturity": "defined-not-evaluated"
+    },
+    {
+      "id": "release-risk-analyst",
+      "name": "Release Risk Analyst",
+      "definition": ".github/agents/release-risk-analyst.agent.md",
+      "purpose": "Identifies change-scope risks and required release evidence without approving releases.",
+      "maturity": "defined-not-evaluated"
     }
   ],
   "evaluations": []

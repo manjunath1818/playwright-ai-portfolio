@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "uiTests": [
+    "tests/auth/login.spec.ts",
+    "tests/inventory/inventory.spec.ts",
+    "tests/checkout/checkout.spec.ts",
+    "tests/accessibility/login-accessibility.spec.ts"
+  ],
+  "broadImpactPaths": [
+    "playwright.config.js",
+    "package.json",
+    "package-lock.json",
+    "src/fixtures/base.ts",
+    ".github/workflows/"
+  ],
+  "mappings": [
+    {
+      "changedPaths": ["src/pages/LoginPage.ts", "tests/data/users.json", "specs/saucedemo-login.md"],
+      "tests": ["tests/auth/login.spec.ts", "tests/accessibility/login-accessibility.spec.ts"]
+    },
+    {
+      "changedPaths": ["src/pages/InventoryPage.ts", "specs/saucedemo-shopping.md"],
+      "tests": ["tests/inventory/inventory.spec.ts", "tests/checkout/checkout.spec.ts"]
+    },
+    {
+      "changedPaths": ["src/pages/CartPage.ts", "src/pages/CheckoutInformationPage.ts", "src/pages/CheckoutOverviewPage.ts", "src/pages/CheckoutCompletePage.ts", "tests/data/checkout.json"],
+      "tests": ["tests/checkout/checkout.spec.ts"]
+    },
+    {
+      "changedPaths": ["src/api/JsonPlaceholderClient.ts", "tests/data/api-contract.json", "specs/api-jsonplaceholder.md"],
+      "tests": ["tests/api/jsonplaceholder.spec.ts"]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "riskRules": [
+    {
+      "paths": ["src/pages/CheckoutInformationPage.ts", "src/pages/CheckoutOverviewPage.ts", "src/pages/CheckoutCompletePage.ts", "src/pages/CartPage.ts", "tests/data/checkout.json"],
+      "area": "Checkout journey",
+      "level": "high",
+      "reason": "Affects basket, customer data validation, or purchase completion."
+    },
+    {
+      "paths": ["src/pages/LoginPage.ts", "tests/data/users.json"],
+      "area": "Authentication",
+      "level": "high",
+      "reason": "Affects access to the application and test fixture setup."
+    },
+    {
+      "paths": ["src/api/JsonPlaceholderClient.ts", "tests/data/api-contract.json"],
+      "area": "API contract coverage",
+      "level": "medium",
+      "reason": "Affects API request behavior or contract expectations."
+    },
+    {
+      "paths": ["src/pages/InventoryPage.ts"],
+      "area": "Inventory journey",
+      "level": "medium",
+      "reason": "Affects product visibility, sorting, or cart entry points."
+    }
+  ],
+  "broadRiskPaths": [
+    "playwright.config.js",
+    "package.json",
+    "package-lock.json",
+    "src/fixtures/base.ts",
+    ".github/workflows/"
+  ]
+}

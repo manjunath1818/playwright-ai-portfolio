@@ -13,7 +13,12 @@
     "test:report": "playwright show-report",
     "test:allure": "playwright test --reporter=line,allure-playwright",
     "install-browsers": "playwright install",
-    "report:agents": "node src/utils/build-agent-scorecard.mjs"
+    "report:agents": "node src/utils/build-agent-scorecard.mjs",
+    "pr:dry-run": "node src/utils/review-and-prepare-pr.mjs",
+    "review:pr": "node src/utils/review-pull-request.mjs",
+    "triage:ci-failure": "node src/utils/triage-playwright-failure.mjs",
+    "impact:tests": "node src/utils/analyze-test-impact.mjs",
+    "risk:release": "node src/utils/analyze-release-risk.mjs"
   },
   "keywords": [],
   "author": "",
