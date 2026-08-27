@@ -15,6 +15,13 @@ A production-style Playwright TypeScript framework that tests the SauceDemo stor
 - GitHub Actions browser sharding with downloadable test evidence
 - Three scoped AI agents: planner, generator, and healer
 
+## Portfolio evidence
+
+- [Website test plan](specs/portfolio-test-plan.md) — scope, risks, strategy, environments, and exit criteria
+- [18 manual test cases](specs/manual-test-cases.md) — authentication, catalogue, cart, checkout, and accessibility
+- [Sample bug reports](specs/bug-reports.md) — reproducible steps, severity, impact, and screenshots
+- [Automated UI suite](tests/) — Page Objects, shared fixtures, JSON data, and web-first assertions
+
 ## Quick start
 
 ```powershell
@@ -27,6 +34,12 @@ Run the most important tests quickly:
 
 ```powershell
 npm run test:smoke
+```
+
+Run the focused portfolio suite (11 UI tests in Chromium):
+
+```powershell
+npm run test:portfolio
 ```
 
 Open the local HTML report:
