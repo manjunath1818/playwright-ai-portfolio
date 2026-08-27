@@ -6,6 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
+    "test:portfolio": "playwright test tests/auth/login.spec.ts tests/inventory/inventory.spec.ts tests/checkout/checkout.spec.ts --project=chromium",
     "test:chromium": "playwright test --project=chromium",
     "test:api": "playwright test --project=api",
     "test:a11y": "playwright test --grep @a11y",
