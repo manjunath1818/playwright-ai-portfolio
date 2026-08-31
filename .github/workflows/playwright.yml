@@ -37,8 +37,15 @@ jobs:
     - name: Install Playwright browser
       if: ${{ matrix.browser != '' }}
       run: npx playwright install --with-deps ${{ matrix.browser }}
-    - name: Run Playwright tests
+    - name: Run Playwright browser tests
+      if: ${{ matrix.project != 'api' }}
       run: npx playwright test --project=${{ matrix.project }}
+    - name: Run Playwright API tests
+      if: ${{ matrix.project == 'api' }}
+      env:
+        CONTACT_LIST_EMAIL: ${{ secrets.CONTACT_LIST_EMAIL }}
+        CONTACT_LIST_PASSWORD: ${{ secrets.CONTACT_LIST_PASSWORD }}
+      run: npx playwright test --project=api
     - name: Triage failed Playwright run
       if: ${{ failure() }}
       run: node src/utils/triage-playwright-failure.mjs --results-dir test-results --project ${{ matrix.project }} --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
