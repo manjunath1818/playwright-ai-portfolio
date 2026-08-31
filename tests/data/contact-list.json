@@ -1,0 +1,29 @@
+{
+  "contact": {
+    "firstName": "API",
+    "lastName": "Automation",
+    "birthdate": "1990-01-15",
+    "email": "api.automation@example.com",
+    "phone": "8005550101",
+    "street1": "100 Test Avenue",
+    "street2": "Suite 200",
+    "city": "Testville",
+    "stateProvince": "Test State",
+    "postalCode": "560001",
+    "country": "India"
+  },
+  "updatedContact": {
+    "firstName": "Updated",
+    "lastName": "Automation",
+    "birthdate": "1990-01-15",
+    "email": "updated.automation@example.com",
+    "phone": "8005550199",
+    "street1": "200 Updated Avenue",
+    "street2": "Floor 3",
+    "city": "Updated City",
+    "stateProvince": "Updated State",
+    "postalCode": "570001",
+    "country": "India"
+  },
+  "invalidContactId": "6a781351379cc90015b09741"
+}
